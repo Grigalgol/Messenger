@@ -19,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void OnClickSendMessage(View view) {
         String msg = editTextSendMsg.getText().toString();
-        Intent intent = new Intent(this, ReseveMessageActivity.class);
-        intent.putExtra("msg",msg);
-        startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_SEND); //простой текст
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, msg);
+        Intent chosenintent = Intent.createChooser(intent, getString(R.string.chooser_title));
+        startActivity(chosenintent);
     }
 }
